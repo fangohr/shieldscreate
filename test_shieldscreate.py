@@ -1,4 +1,13 @@
+import os.path
 from shieldscreate import parse, get_shields_url, export
+
+
+def test_is_testdata_present():
+    if os.path.exists('testdata'):
+        print("testdata is present")
+    else:
+        print("cloning testdata repo(s)")
+        os.system('make setup-testdata')
 
 
 def test_parse():
@@ -17,10 +26,14 @@ def test_get_shields_urls():
 
 
 def test_export_html():
-    urls = {'github-url': 'https://github.com/fangohr/createshieldstestrepo1.git'}
-    shields = {'github-url': 'https://img.shields.io/badge/github-finmag-green.svg'}
+    urls = {'github-url':
+            'https://github.com/fangohr/createshieldstestrepo1.git'}
+    shields = {'github-url':
+               'https://img.shields.io/badge/github-finmag-green.svg'}
     html = export(shields, urls, 'html')
-    assert html['github-url'] == '''<a href="https://github.com/fangohr/createshieldstestrepo1.git"><img src="https://img.shields.io/badge/github-finmag-green.svg"></a>'''
+    assert html['github-url'] == '''<a href="https://github.com/fangohr/''' + \
+        '''createshieldstestrepo1.git"><img src="https://img.shields.io/badge''' + \
+        '''/github-finmag-green.svg"></a>'''
 
 
 #    shields = get_shields_url(meta_data)
