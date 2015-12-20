@@ -1,4 +1,4 @@
-from shieldscreate import parse
+from shieldscreate import parse, get_shields_url
 
 
 def test_parse():
@@ -7,6 +7,12 @@ def test_parse():
     assert meta_data['github-url'] == \
         'https://github.com/fangohr/createshieldstestrepo1.git'
 
+
+def test_get_shields_urls():
+    githuburl = 'https://github.com/fangohr/createshieldstestrepo1.git'
+    meta_data = {'github-url': githuburl}
+    shields = get_shields_url(meta_data)
+    assert shields['github-url'] == 'https://github.com/fangohr/createshieldstestrepo1.git'
 
 #    shields = get_shields_url(meta_data)
 #    output = shields.export('md')

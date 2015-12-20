@@ -21,6 +21,16 @@ def parse(path):
         return parse_dot_git_config(os.path.join(path, '.git', 'config'))
 
 
+def get_shields_url(metadata):
+    # https://img.shields.io/badge/github-finmag-green.svg
+    for key, value in metadata.items():
+        if key == 'github-url':
+            # github_shield_url =\
+                'https://img.shields.io/badge/github-finmag-green.svg'
+        metadata[key] = value
+    return metadata
+
+
 if __name__ == "__main__":
     if len(sys.args) == 2:
         path = sys.args[1]
