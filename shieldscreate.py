@@ -26,10 +26,22 @@ def get_shields_url(metadata):
     # https://img.shields.io/badge/github-finmag-green.svg
     for key, url in metadata.items():
         if key == 'github-url':
-            # github_shield_url =\
-                shieldvalue = 'https://img.shields.io/badge/github-finmag-green.svg'
+                shieldvalue = \
+                    'https://img.shields.io/badge/github-finmag-green.svg'
         shields[key] = shieldvalue
     return shields
+
+
+def export(shielddata, urldata, target='html'):
+    htmls = {}
+    if target == 'html':
+        for key in shielddata:
+            url = urldata[key]
+            shield = shielddata[key]
+            html = '<a href="{}"><img src="{}"></a>'.format(
+                url, shield)
+            htmls[key] = html
+    return htmls
 
 
 if __name__ == "__main__":
@@ -40,5 +52,7 @@ if __name__ == "__main__":
     meta_data = parse(path)
     shields = get_shields_url(meta_data)
     print(shields)
-    # output = shields.export('md')
+    html = export(shields, meta_data, 'html')
+    open('test.html', 'w').write(" ".join(html.values()))
+
     # print(output)
