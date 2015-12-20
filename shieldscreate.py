@@ -22,21 +22,23 @@ def parse(path):
 
 
 def get_shields_url(metadata):
+    shields = {}
     # https://img.shields.io/badge/github-finmag-green.svg
-    for key, value in metadata.items():
+    for key, url in metadata.items():
         if key == 'github-url':
             # github_shield_url =\
-                'https://img.shields.io/badge/github-finmag-green.svg'
-        metadata[key] = value
-    return metadata
+                shieldvalue = 'https://img.shields.io/badge/github-finmag-green.svg'
+        shields[key] = shieldvalue
+    return shields
 
 
 if __name__ == "__main__":
-    if len(sys.args) == 2:
-        path = sys.args[1]
+    if len(sys.argv) == 2:
+        path = sys.argv[1]
     else:
         path = '.'
     meta_data = parse(path)
-    # shields = get_shields_url(meta_data)
+    shields = get_shields_url(meta_data)
+    print(shields)
     # output = shields.export('md')
     # print(output)
