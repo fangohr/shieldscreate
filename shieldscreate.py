@@ -5,21 +5,21 @@ import sys
 
 def parse_dot_git_config(path):
     c = configparser.ConfigParser()
-    r = {}  # Results
+    r = {'repo-type': 'git'}  # Results
     with open(path) as f:
         c.read_file(f)
 
-    r['github-url'] = c.get('''remote "origin"''', 'url')
+    r['repo-url'] = c.get('''remote "origin"''', 'url')
     return r
 
 
 def parse_dot_hg_config(path):
     c = configparser.ConfigParser()
-    r = {}  # Results
+    r = {'repo-type': 'hg'}  # Results
     with open(path) as f:
         c.read_file(f)
 
-    r['bitbucket-url'] = c.get('paths', 'default')
+    r['repo-url'] = c.get('paths', 'default')
     return r
 
 
