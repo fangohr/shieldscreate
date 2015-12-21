@@ -1,8 +1,9 @@
 * features
-  - [ ] read bitbucket repo
+  - [X] read bitbucket repo
   - [ ] find travis files
   - [ ] find circle files
-
+  
 
 * Todo
   - [ ] refactor (class, keys are duplicated across dictionaries)
+  - [ ] end-to-end tests
