@@ -6,7 +6,7 @@ import sys
 def parse_dot_git_config(path):
     c = configparser.ConfigParser()
     r = {}  # Results
-    with open('testdata/createshieldstestrepo1/.git/config') as f:
+    with open(path) as f:
         c.read_file(f)
 
     r['github-url'] = c.get('''remote "origin"''', 'url')
