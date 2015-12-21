@@ -10,11 +10,18 @@ def test_is_testdata_present():
         os.system('make setup-testdata')
 
 
-def test_parse():
+def test_parse_git():
     meta_data = parse('testdata/createshieldstestrepo1')
     assert 'github-url' in meta_data
     assert meta_data['github-url'] == \
         'https://github.com/fangohr/createshieldstestrepo1.git'
+
+
+def test_parse_hg():
+    meta_data = parse('testdata/shieldscreate_test_repo2')
+    assert 'bitbucket-url' in meta_data
+    assert meta_data['bitbucket-url'] == \
+        'https://bitbucket.org/fangohr/shieldscreate_test_repo2'
 
 
 def test_get_shields_urls():
