@@ -13,12 +13,24 @@ def parse_dot_git_config(path):
     return r
 
 
+def parse_dot_hg_config(path):
+    c = configparser.ConfigParser()
+    r = {}  # Results
+    with open(path) as f:
+        c.read_file(f)
+
+    r['bitbucket-url'] = c.get('paths', 'default')
+    return r
+
+
 def parse(path):
     """Given a path, return metadata about repository found
     at that location"""
     entries = os.listdir(path)
     if '.git' in entries:
         return parse_dot_git_config(os.path.join(path, '.git', 'config'))
+    if '.hg' in entries:
+        return parse_dot_hg_config(os.path.join(path, '.hg', 'hgrc'))
 
 
 def get_shields_url(metadata):
