@@ -1,0 +1,1 @@
+exploring some ideas of automatic shield creation. Not for use at the moment.
