@@ -5,7 +5,7 @@
   
 
 * Todo
-  - [ ] Add travis testing to this repo
+  - [.] Add travis testing to this repo
   - [ ] Add circle testing to this repo
   - [ ] refactor (class, keys are duplicated across dictionaries)
   - [ ] end-to-end tests
