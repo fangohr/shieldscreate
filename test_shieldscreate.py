@@ -50,8 +50,13 @@ def test_end_to_end_this_repo():
         """<img src="https://img.shields.io/badge/git-create""" + \
         """shields-green.svg"></a>"""
     github_root_only = expected_result.split('fangohr')[1]
-    github_root_only_computed = main('.', 'html', 'createshields').split('fangohr')[1]
+    computed_result = main('.', 'html', 'createshields')
+    github_root_only_computed = computed_result.split('fangohr')[1]
     assert github_root_only == github_root_only_computed
+
+    # write into file for convenience
+    open('tmp-test-output.html', 'w').write(computed_result)
+
 
 #    shields = get_shields_url(meta_data)
 #    output = shields.export('md')
