@@ -49,7 +49,9 @@ def test_end_to_end_this_repo():
     expected_result = """<a href="git@github.com:fangohr/shieldscreate.git">""" + \
         """<img src="https://img.shields.io/badge/git-create""" + \
         """shields-green.svg"></a>"""
-    assert main('.', 'html', 'createshields') == expected_result
+    github_root_only = expected_result.split('fangohr')[1]
+    github_root_only_computed = main('.', 'html', 'createshields').split('fangohr')[1]
+    assert github_root_only == github_root_only_computed
 
 #    shields = get_shields_url(meta_data)
 #    output = shields.export('md')
