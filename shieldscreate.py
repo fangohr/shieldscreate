@@ -68,6 +68,10 @@ def export(shielddata, urldata, target='html'):
     return htmls
 
 
+def search_for_travis(path):
+    return '.travis.yml'   # XXX fake it till you make it
+
+
 def main(path, format, name):
     assert format in ['html', 'rest', 'md']
     meta_data = parse(path, name)

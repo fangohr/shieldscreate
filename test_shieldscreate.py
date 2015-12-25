@@ -1,5 +1,5 @@
 import os.path
-from shieldscreate import parse, get_shields_url, export, main
+from shieldscreate import parse, get_shields_url, export, main, search_for_travis
 
 
 def test_is_testdata_present():
@@ -57,6 +57,13 @@ def test_end_to_end_this_repo():
     # write into file for convenience
     open('tmp-test-output.html', 'w').write(computed_result)
 
+
+def test_search_for_travis():
+    assert search_for_travis('.') == '.travis.yml'
+
+
+
+    #    https://img.shields.io/travis/fangohr/shieldscreate.svg
 
 #    shields = get_shields_url(meta_data)
 #    output = shields.export('md')
