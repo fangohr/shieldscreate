@@ -55,6 +55,13 @@ def test_get_shields_urls():
         'https://img.shields.io/badge/git-finmag-green.svg'
 
 
+def test_get_shields_with_travis_urls():
+    meta_data = parse('.')
+    shields = get_shields_url(meta_data)
+    assert shields['travis-url'] == \
+        'https://img.shields.io/travis/fangohr/shieldscreate.svg'
+
+
 def test_export_html():
     urls = {'github-url':
             'https://github.com/fangohr/createshieldstestrepo1.git'}
@@ -76,7 +83,7 @@ def test_end_to_end_this_repo():
     assert github_root_only == github_root_only_computed
 
     # write into file for convenience
-    open('tmp-test-output.html', 'w').write(computed_result)
+    open('tmp-test-output.html', 'w').write(" ".join(main('.', 'html', 'createshields').values()))
 
 
 def test_search_for_travis():

@@ -1,12 +1,12 @@
 * features
   - [X] read bitbucket repo
-  - [ ] find travis files
+  - [X] find travis files
   - [ ] find circle files
-  - [ ] get user name from github repo
-  - [ ] get repo name from github repo  
+  - [X] get user name from github repo
+  - [X] get repo name from github repo  
 
 * Todo
-  - [.] Add travis testing to this repo
+  - [X] Add travis testing to this repo
   - [ ] Add circle testing to this repo
   - [ ] refactor (class, keys are duplicated across dictionaries)
   - [ ] end-to-end tests

@@ -34,14 +34,12 @@ def parse_dot_git_config(path, name):
         c.read_file(f)
     r['repo-url'] = git_url_to_https(c.get('''remote "origin"''', 'url'))
     # extract user name and repo-name
-    ## https://github.com/fangohr/createshieldstestrepo1.git
+    # https://github.com/fangohr/createshieldstestrepo1.git
     repopath = r['repo-url'].lstrip('https://github.com/')
     username, reponame = repopath.split('/')
     reponame = reponame.rstrip('.git')
     r['github-username'] = username
     r['github-repo-name'] = reponame
-
-
 
     return r
 
@@ -85,6 +83,11 @@ def get_shields_url(metadata):
         metadata['name'],
         metadata['colour'])
     shields['repo-url'] = shieldvalue
+    if 'travis-url' in metadata:
+        # 'https://img.shields.io/travis/fangohr/shieldscreate.svg'
+        shieldvalue = 'https://img.shields.io/travis/{}/{}.svg'.format(
+            metadata['github-username'], metadata['github-repo-name'])
+        shields['travis-url'] = shieldvalue
     return shields
 
 
