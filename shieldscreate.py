@@ -23,8 +23,8 @@ def parse_dot_git_config(path, name):
     r['repo-type'] = 'git'
     with open(path) as f:
         c.read_file(f)
-
     r['repo-url'] = c.get('''remote "origin"''', 'url')
+
     return r
 
 
@@ -40,14 +40,22 @@ def parse_dot_hg_config(path, name):
     return r
 
 
-def parse(path, name):
+def parse(path, name=None):
     """Given a path, return metadata about repository found
     at that location"""
     entries = os.listdir(path)
     if '.git' in entries:
-        return parse_dot_git_config(os.path.join(path, '.git', 'config'), name)
-    if '.hg' in entries:
-        return parse_dot_hg_config(os.path.join(path, '.hg', 'hgrc'), name)
+        md = parse_dot_git_config(os.path.join(path, '.git', 'config'), name)
+    elif '.hg' in entries:
+        md = parse_dot_hg_config(os.path.join(path, '.hg', 'hgrc'), name)
+    else:
+        NotImplemented("Can only handle hg or git repos.")
+
+    # check for travis
+    if search_for_travis(path):
+        md['travis-url'] = 'https://travis-ci.org/fangohr/shieldscreate'
+
+    return md   # MetaData
 
 
 def get_shields_url(metadata):

@@ -2,7 +2,8 @@
   - [X] read bitbucket repo
   - [ ] find travis files
   - [ ] find circle files
-  
+  - [ ] get user name from github repo
+  - [ ] get repo name from github repo  
 
 * Todo
   - [.] Add travis testing to this repo

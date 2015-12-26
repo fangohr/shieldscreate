@@ -1,5 +1,6 @@
 import os.path
-from shieldscreate import parse, get_shields_url, export, main, search_for_travis
+from shieldscreate import parse, get_shields_url, export, main, \
+    search_for_travis
 
 
 def test_is_testdata_present():
@@ -10,12 +11,23 @@ def test_is_testdata_present():
         os.system('make setup-testdata')
 
 
+def test_parse_this_git():
+    meta_data = parse('.', None)
+    assert 'repo-type' in meta_data
+    assert meta_data['repo-type'] == 'git'
+    assert meta_data['repo-url'] == \
+        'git@github.com:fangohr/shieldscreate.git'
+    assert meta_data['travis-url'] == \
+        'https://travis-ci.org/fangohr/shieldscreate'
+
+
 def test_parse_git():
     meta_data = parse('testdata/createshieldstestrepo1', None)
     assert 'repo-type' in meta_data
     assert meta_data['repo-type'] == 'git'
     assert meta_data['repo-url'] == \
         'https://github.com/fangohr/createshieldstestrepo1.git'
+    assert 'travis-url' not in meta_data
 
 
 def test_parse_hg():
@@ -60,8 +72,6 @@ def test_end_to_end_this_repo():
 
 def test_search_for_travis():
     assert search_for_travis('.') == '.travis.yml'
-
-
 
     #    https://img.shields.io/travis/fangohr/shieldscreate.svg
 
