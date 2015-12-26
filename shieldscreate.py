@@ -75,7 +75,11 @@ def export(shielddata, urldata, target='html'):
 
 
 def search_for_travis(path):
-    return '.travis.yml'   # XXX fake it till you make it
+    entries = os.listdir(path)
+    if '.travis.yml' in entries:
+        return '.travis.yml'   # XXX fake it till you make it
+    else:
+        return None
 
 
 def main(path, format, name):
@@ -83,7 +87,7 @@ def main(path, format, name):
     meta_data = parse(path, name)
     shields = get_shields_url(meta_data)
     output = export(shields, meta_data, format)
-    return " ".join(output.values())
+    return output
 
 
 if __name__ == "__main__":
