@@ -17,6 +17,15 @@ def create_metadata(name, colour=default_badge_colour):
     return metadata
 
 
+def git_url_to_https(s):
+    if s.startswith('https://'):
+        return s
+    elif s.startswith('git@github.com:'):
+        return 'https://github.com/' + s.split('git@github.com:')[1]
+    else:
+        return NotImplementedError("Can't read '{}'".format(s))
+
+
 def parse_dot_git_config(path, name):
     c = configparser.ConfigParser()
     r = create_metadata(name)
@@ -24,6 +33,10 @@ def parse_dot_git_config(path, name):
     with open(path) as f:
         c.read_file(f)
     r['repo-url'] = c.get('''remote "origin"''', 'url')
+    # extract user name and repo-name
+    ## https://github.com/fangohr/createshieldstestrepo1.git
+    ## or git@github.com:fangohr/shieldscreate.git
+    username = r['repo-url'].split('github.com')
 
     return r
 

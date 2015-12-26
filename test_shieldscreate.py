@@ -1,6 +1,13 @@
 import os.path
 from shieldscreate import parse, get_shields_url, export, main, \
-    search_for_travis
+    search_for_travis, git_url_to_https
+
+
+def test_git_url_to_https():
+    s_https = "https://github.com/fangohr/shieldscreate.git"
+    s_git = "git@github.com:fangohr/shieldscreate.git"
+    assert git_url_to_https(s_https) == s_https
+    assert git_url_to_https(s_git) == s_https
 
 
 def test_is_testdata_present():
@@ -19,6 +26,8 @@ def test_parse_this_git():
         'git@github.com:fangohr/shieldscreate.git'
     assert meta_data['travis-url'] == \
         'https://travis-ci.org/fangohr/shieldscreate'
+    #assert meta_data['github-username'] == 'fangohr'
+    #assert meta_data['github-repo-name'] == 'shieldscreate'
 
 
 def test_parse_git():
