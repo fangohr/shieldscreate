@@ -32,11 +32,16 @@ def parse_dot_git_config(path, name):
     r['repo-type'] = 'git'
     with open(path) as f:
         c.read_file(f)
-    r['repo-url'] = c.get('''remote "origin"''', 'url')
+    r['repo-url'] = git_url_to_https(c.get('''remote "origin"''', 'url'))
     # extract user name and repo-name
     ## https://github.com/fangohr/createshieldstestrepo1.git
-    ## or git@github.com:fangohr/shieldscreate.git
-    username = r['repo-url'].split('github.com')
+    repopath = r['repo-url'].lstrip('https://github.com/')
+    username, reponame = repopath.split('/')
+    reponame = reponame.rstrip('.git')
+    r['github-username'] = username
+    r['github-repo-name'] = reponame
+
+
 
     return r
 

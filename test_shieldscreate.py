@@ -23,11 +23,11 @@ def test_parse_this_git():
     assert 'repo-type' in meta_data
     assert meta_data['repo-type'] == 'git'
     assert meta_data['repo-url'] == \
-        'git@github.com:fangohr/shieldscreate.git'
+        'https://github.com/fangohr/shieldscreate.git'
     assert meta_data['travis-url'] == \
         'https://travis-ci.org/fangohr/shieldscreate'
-    #assert meta_data['github-username'] == 'fangohr'
-    #assert meta_data['github-repo-name'] == 'shieldscreate'
+    assert meta_data['github-username'] == 'fangohr'
+    assert meta_data['github-repo-name'] == 'shieldscreate'
 
 
 def test_parse_git():
