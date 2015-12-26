@@ -1,3 +1,9 @@
+import sys
+python_version = sys.version_info[0]
+if python_version == 2:
+    raise NotImplementedError("This programme needs python 3")
+    # Configparser has trouble reading .git/config in python 2
+
 import configparser
 import os
 import sys
